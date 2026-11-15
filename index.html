@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is Worship More About Me?</title>
+<meta name="description" content="We counted the words in 352 of the most-used worship songs written since 1900. Not true for the century. Rising this decade.">
+<meta property="og:title" content="Not true for the century. Rising this decade.">
+<meta property="og:description" content="Are worship songs more about me than God? A data study of 352 of the most-used congregational songs written since 1900.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://jimcoleman1982.github.io/worship-lyrics-study/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://jimcoleman1982.github.io/worship-lyrics-study/">
+<meta name="twitter:image" content="https://jimcoleman1982.github.io/worship-lyrics-study/share.png">
+<link rel="canonical" href="https://jimcoleman1982.github.io/worship-lyrics-study/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --paper: #f7f3ea;
+  --paper-2: #efe8da;
+  --ink: #1c1915;
+  --ink-2: #4f4940;
+  --muted: #847d72;
+  --rule: #ddd4c3;
+  --grid: #e6dfd0;
+  --axis: #c6bdab;
+  --me: #eb6834;
+  --god: #2a78d6;
+  --us: #1baf7a;
+  --other: #bdb5a6;
+  --he: #4f4940;
+  --pop: #9b9384;
+  --label-on-fill: #ffffff;
+  --chip: #e9e1d1;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", "Helvetica Neue", Helvetica, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --paper: #171513; --paper-2: #211e1a; --ink: #f2ede3; --ink-2: #c9c1b3; --muted: #8f877a;
+    --rule: #34302a; --grid: #2a2723; --axis: #403b33; --me: #d95926; --god: #3987e5; --us: #199e70;
+    --other: #5c564d; --he: #c9c1b3; --pop: #7d766b; --chip: #2a2621;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #171513; --paper-2: #211e1a; --ink: #f2ede3; --ink-2: #c9c1b3; --muted: #8f877a;
+  --rule: #34302a; --grid: #2a2723; --axis: #403b33; --me: #d95926; --god: #3987e5; --us: #199e70;
+  --other: #5c564d; --he: #c9c1b3; --pop: #7d766b; --chip: #2a2621;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); font-size: 19px; line-height: 1.55;
+  font-optical-sizing: auto; overflow-x: hidden;
+}
+::selection { background: var(--me); color: #fff; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--me); }
+:focus-visible { outline: 2px solid var(--god); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+.wide { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+/* masthead */
+.masthead { border-bottom: 1px solid var(--rule); }
+.masthead .wide { display: flex; justify-content: space-between; align-items: baseline; padding-top: 14px; padding-bottom: 12px; }
+.brand { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.theme-btn { font-family: var(--sans); font-size: 12px; color: var(--ink-2); background: none; border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 32px; }
+.theme-btn:hover { border-color: var(--ink-2); }
+
+/* hero */
+header.hero { padding: 64px 0 36px; }
+.kicker { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--me); margin: 0 0 18px; }
+h1 { font-weight: 500; font-size: clamp(40px, 7.2vw, 76px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 24px; }
+h1 em { font-style: italic; color: var(--me); }
+.dek { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.45; color: var(--ink-2); margin: 0; max-width: 34em; }
+.byline { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 22px; }
+
+/* sections */
+section { padding: 44px 0; }
+section + section { border-top: 1px solid var(--rule); }
+h2 { font-weight: 500; font-size: clamp(28px, 4vw, 38px); line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 14px; }
+.eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+p { margin: 0 0 1em; }
+.lede { font-size: 20px; color: var(--ink-2); max-width: 36em; }
+.note { font-family: var(--sans); font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+/* verdict */
+.verdict { display: grid; grid-template-columns: 220px 1fr; gap: 28px 40px; align-items: start; }
+.verdict-word { font-family: var(--serif); font-size: clamp(54px, 8vw, 84px); line-height: .95; font-weight: 500; letter-spacing: -0.02em; }
+.verdict-sub { font-family: var(--sans); font-size: 14px; color: var(--ink-2); margin-top: 12px; line-height: 1.45; }
+.tests { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 15px; }
+.tests th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0 10px 10px 0; border-bottom: 1px solid var(--rule); }
+.tests td { padding: 14px 10px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.tests td.num { font-variant-numeric: tabular-nums; font-size: 17px; white-space: nowrap; }
+.tests .tname { font-weight: 600; }
+.tests td:first-child { min-width: 210px; }
+@media (min-width: 761px) { .verdict { grid-template-columns: 190px 1fr; } }
+.tests .tdesc { display: block; font-size: 13px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; background: var(--chip); color: var(--ink); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+.chip svg { flex: none; }
+.splits { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 26px; }
+.split { background: var(--paper-2); border-radius: 6px; padding: 16px 18px; font-family: var(--sans); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.split b { color: var(--ink); display: block; font-size: 15px; margin-bottom: 4px; }
+
+/* featured */
+.featured { background: var(--paper-2); }
+.featured + section { border-top: 0; }
+.big-numbers { display: flex; gap: 0; margin: 26px 0 8px; font-family: var(--sans); }
+.big-numbers .bn { flex: 1; padding: 0 18px 0 0; }
+.big-numbers .bn + .bn { padding-left: 18px; border-left: 1px solid var(--rule); }
+.bn .v { font-family: var(--serif); font-size: clamp(42px, 7vw, 68px); line-height: 1; font-weight: 500; letter-spacing: -0.02em; }
+.bn .l { font-size: 13px; color: var(--ink-2); margin-top: 6px; }
+.bn .arrow { color: var(--me); }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 18px 0 8px; font-family: var(--sans); }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 3px; background: var(--paper); }
+.seg button { font: 600 13px var(--sans); color: var(--ink-2); background: none; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 36px; transition: background .2s, color .2s; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.seg button:not([aria-pressed="true"]):hover { background: var(--chip); }
+
+/* charts */
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--sans); }
+.axis text { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.axis line, .axis path { stroke: var(--axis); }
+.grid line { stroke: var(--grid); }
+.lbl { font-size: 13px; fill: var(--ink-2); }
+.lbl-strong { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.anno { font-size: 12px; fill: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--sans); font-size: 13px; color: var(--ink-2); margin: 10px 0 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.sw-line { width: 18px; height: 2px; display: inline-block; border-radius: 2px; }
+.caption { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+/* tooltip */
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--paper); font-family: var(--sans); font-size: 13px; line-height: 1.4; padding: 8px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; z-index: 5; }
+.tip.on { opacity: 1; transform: none; }
+.tip b { font-size: 15px; }
+.tip .k { display: inline-block; width: 12px; height: 2px; vertical-align: middle; margin-right: 6px; }
+
+/* bubbles */
+.clouds { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+.cloud h3 { font-family: var(--sans); font-size: 14px; font-weight: 700; margin: 0; }
+.cloud .sub { font-family: var(--sans); font-size: 13px; color: var(--muted); margin: 2px 0 6px; }
+.cloud .chart { background: var(--paper-2); border-radius: 8px; }
+.bubble text { font-family: var(--sans); font-weight: 600; pointer-events: none; text-anchor: middle; dominant-baseline: central; }
+
+/* cards */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.card { border-top: 3px solid var(--ink); padding: 16px 0 6px; }
+.card .num { font-size: 40px; line-height: 1; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
+.card h3 { font-size: 21px; line-height: 1.25; font-weight: 500; margin: 0 0 8px; }
+.card p { font-size: 17px; color: var(--ink-2); margin: 0; }
+
+/* methods */
+details.methods { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+details.methods summary { cursor: pointer; padding: 18px 0; font-family: var(--sans); font-weight: 700; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+details.methods summary::-webkit-details-marker { display: none; }
+details.methods summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--muted); transition: transform .2s; }
+details.methods[open] summary::after { transform: rotate(45deg); }
+.methods-body { font-size: 17px; color: var(--ink-2); padding-bottom: 20px; }
+.methods-body h4 { font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin: 22px 0 6px; }
+.methods-body ul { padding-left: 20px; margin: 0 0 10px; }
+.methods-body li { margin-bottom: 6px; }
+table.data { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 13px; font-variant-numeric: tabular-nums; margin: 8px 0 14px; }
+table.data th, table.data td { padding: 6px 8px; border-bottom: 1px solid var(--rule); text-align: right; }
+table.data th:first-child, table.data td:first-child { text-align: left; }
+table.data th { color: var(--muted); font-weight: 600; }
+.tablewrap { overflow-x: auto; }
+
+footer { padding: 36px 0 64px; font-family: var(--sans); font-size: 13px; color: var(--muted); }
+
+/* load-in */
+.reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+.d1 { animation-delay: .05s; } .d2 { animation-delay: .15s; } .d3 { animation-delay: .28s; } .d4 { animation-delay: .4s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+  .tip, .seg button { transition: none; }
+}
+
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  header.hero { padding: 40px 0 24px; }
+  .verdict { grid-template-columns: 1fr; gap: 18px; }
+  .splits, .clouds, .cards { grid-template-columns: 1fr; }
+  .tests th.hide-sm, .tests td.hide-sm { display: none; }
+  .big-numbers .bn { padding-right: 10px; }
+  .big-numbers .bn + .bn { padding-left: 10px; }
+}
+@media (forced-colors: active) {
+  .chip, .split, .featured { border: 1px solid CanvasText; }
+}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <div class="wide">
+    <span class="brand">Worship Lyrics Study</span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark">Dark</button>
+  </div>
+</div>
+
+<main>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker reveal d1">A data study of 352 worship songs, 1900 to 2025</p>
+    <h1 class="reveal d2">Not true for the century. <em>Rising this decade.</em></h1>
+    <p class="dek reveal d3">Sit through a modern worship set and you will hear a lot of "I" and "me." Has worship drifted from God toward us? We counted every word in the most-used church songs of each decade since 1900.</p>
+    <p class="dek reveal d4" style="margin-top:16px;color:var(--ink)"><b style="font-weight:600">The short answer:</b> across the century, no. Today's songs say "I" about as often as the gospel songs of 1900 to 1969. But since 2000 it has climbed every decade, and songs from the 2020s now match the 1900s peak.</p>
+  </div>
+</header>
+
+<section id="verdict" aria-labelledby="verdict-h">
+  <div class="wrap">
+    <p class="eyebrow">The verdict</p>
+    <h2 id="verdict-h" class="sr-only" style="position:absolute;left:-9999px">The verdict</h2>
+    <div class="verdict">
+      <div>
+        <div class="verdict-word" id="verdictWord">Not true</div>
+        <div class="verdict-sub" id="verdictSub"></div>
+      </div>
+      <div>
+        <table class="tests" aria-describedby="testsNote">
+          <thead><tr><th scope="col">Test</th><th scope="col">Written 1900 to 1999</th><th scope="col">Written 2000 on</th><th scope="col" class="hide-sm">Result</th></tr></thead>
+          <tbody id="testsBody"></tbody>
+        </table>
+        <p class="note" id="testsNote" style="margin-top:12px">The rules for calling it true were written down and locked before a single lyric was counted. A test passes only if songs written since 2000 score at least 10% higher, the gap is statistically clear, and it holds whether repeated lines are counted once or as sung.</p>
+      </div>
+    </div>
+    <div class="splits" id="splits"></div>
+  </div>
+</section>
+
+<section class="featured" id="climb" aria-labelledby="climb-h">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <p class="eyebrow">A closer look</p>
+      <h2 id="climb-h">The newest songs are climbing</h2>
+      <p class="lede">Look only at songs written since 2000 and the trend runs one way. Each decade says "I" more than the one before.</p>
+    </div>
+    <div class="big-numbers" id="bigNumbers"></div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Group songs by">
+        <button type="button" data-view="decade" aria-pressed="true">By decade</button>
+        <button type="button" data-view="window" aria-pressed="false">Every five years</button>
+      </div>
+    </div>
+    <div class="chart" id="climbChart" role="img" aria-label="I, me and my per 1,000 words for songs written since 2000"></div>
+    <p class="caption" id="climbCaption"></p>
+  </div>
+</section>
+
+<section id="words" aria-labelledby="words-h">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <p class="eyebrow">The words</p>
+      <h2 id="words-h">Before 2000 and after, side by side</h2>
+      <p class="lede">Each bubble is a word, sized by how often it is sung. "I" is just as big before 2000 as after. What grows is "you," and almost all of that "you" is sung straight to God.</p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Count repeated lines">
+        <button type="button" data-count="unique" aria-pressed="true">Each line once</button>
+        <button type="button" data-count="sung" aria-pressed="false">As sung, with repeats</button>
+      </div>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><i class="sw" style="background:var(--me)"></i>Me (I, me, my)</span>
+      <span><i class="sw" style="background:var(--us)"></i>Us (we, us, our)</span>
+      <span><i class="sw" style="background:var(--god)"></i>God (names, and you or he meaning God)</span>
+      <span><i class="sw" style="background:var(--other)"></i>Other words</span>
+    </div>
+    <div class="clouds">
+      <div class="cloud"><h3>Written 1900 to 1999</h3><p class="sub" id="oldSub"></p><div class="chart" id="cloudOld" role="img" aria-label="Most used words in songs written 1900 to 1999"></div></div>
+      <div class="cloud"><h3>Written 2000 to 2025</h3><p class="sub" id="newSub"></p><div class="chart" id="cloudNew" role="img" aria-label="Most used words in songs written 2000 to 2025"></div></div>
+    </div>
+    <p class="caption">Bubble area is uses per 1,000 words. Common filler words (the, and, of) are left out. Old forms are merged for display: thee and thou count as you, thy and thine as your.</p>
+  </div>
+</section>
+
+<section id="century" aria-labelledby="century-h">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <p class="eyebrow">The long view</p>
+      <h2 id="century-h">The 1970s and 80s were the outlier</h2>
+      <p class="lede">Gospel songs from the early 1900s said "I" as often as today's songs. The praise choruses of the 1970s and 80s pulled it down. Since 1990 it has climbed back.</p>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><i class="sw-line" style="background:var(--me)"></i>I, me, my</span>
+      <span><i class="sw-line" style="background:var(--us)"></i>We, us, our</span>
+      <span><i class="sw-line" style="background:var(--god)"></i>Words for God</span>
+    </div>
+    <div class="chart" id="centuryChart" role="img" aria-label="Words per 1,000 by decade written, 1900s to 2020s"></div>
+    <p class="caption">Uses per 1,000 words, by the decade a song was written. The shaded band around "I" is the 95% range. The 1940s, 1950s and 1960s rest on 16 to 23 songs each, so treat those points with more caution.</p>
+  </div>
+</section>
+
+<section id="towhom" aria-labelledby="towhom-h">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <p class="eyebrow">The real change</p>
+      <h2 id="towhom-h">We used to sing about God. Now we sing to Him.</h2>
+      <p class="lede" id="towhomLede"></p>
+    </div>
+    <div class="legend" aria-hidden="true">
+      <span><i class="sw-line" style="background:var(--god)"></i>"You" sung to God</span>
+      <span><i class="sw-line" style="background:var(--he)"></i>"He" sung about God</span>
+    </div>
+    <div class="chart" id="toWhomChart" role="img" aria-label="You sung to God versus he sung about God, per 1,000 words, by decade"></div>
+  </div>
+</section>
+
+<section id="findings" aria-labelledby="findings-h">
+  <div class="wide">
+    <p class="eyebrow">More from the data</p>
+    <h2 id="findings-h" style="position:absolute;left:-9999px">More from the data</h2>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section id="methods" aria-labelledby="methods-h">
+  <div class="wrap">
+    <h2 id="methods-h" style="font-size:24px">How this was done</h2>
+    <details class="methods">
+      <summary>Methods, limits and sources</summary>
+      <div class="methods-body" id="methodsBody"></div>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Lyrics were analyzed privately. This page publishes only counts and single words, never lyric lines. Song lists come from Hymnary.org and CCLI chart history. Built November 2026.</p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="data.js"></script>
+<script>
+(function () {
+  const D = window.DATA;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt1 = x => (Math.round(x * 10) / 10).toFixed(Math.abs(x) >= 100 ? 0 : 0);
+  const r0 = x => Math.round(x);
+  const pct = x => (x > 0 ? "+" : "") + Math.round(x * 100) + "%";
+  const PROPER = { i: "I", god: "God", jesus: "Jesus", lord: "Lord", christ: "Christ", savior: "Savior", father: "Father",
+    spirit: "Spirit", king: "King", lamb: "Lamb", redeemer: "Redeemer", messiah: "Messiah", almighty: "Almighty", calvary: "Calvary", zion: "Zion" };
+  const disp = w => PROPER[w] || w;
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  /* theme toggle */
+  const root = document.documentElement, btn = document.getElementById("themeBtn");
+  const sysDark = window.matchMedia("(prefers-color-scheme: dark)");
+  let saved = null; try { saved = localStorage.getItem("wls-theme"); } catch (e) {}
+  if (saved) root.setAttribute("data-theme", saved);
+  const isDark = () => root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : sysDark.matches;
+  const syncBtn = () => { btn.textContent = isDark() ? "Light" : "Dark"; };
+  syncBtn();
+  btn.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("wls-theme", next); } catch (e) {}
+    syncBtn(); renderAll();
+  });
+  sysDark.addEventListener("change", () => { syncBtn(); renderAll(); });
+
+  /* tooltip */
+  const tip = document.getElementById("tip");
+  function showTip(evt, rows, host) {
+    tip.replaceChildren();
+    rows.forEach((r, i) => {
+      const line = el("div");
+      if (r.key) { const k = el("span", "k"); k.style.background = r.key; line.appendChild(k); }
+      const v = el("b", null, r.value); line.appendChild(v);
+      if (r.label) line.appendChild(document.createTextNode("  " + r.label));
+      tip.appendChild(line);
+    });
+    const b = document.body.getBoundingClientRect();
+    let x = evt.clientX - b.left + 14, y = evt.clientY - b.top - 14;
+    tip.classList.add("on");
+    const w = tip.offsetWidth;
+    if (x + w > document.documentElement.clientWidth - 8) x = evt.clientX - b.left - w - 14;
+    tip.style.left = x + "px"; tip.style.top = (y - tip.offsetHeight) + "px";
+  }
+  const hideTip = () => tip.classList.remove("on");
+
+  /* ---------- verdict ---------- */
+  const resultText = { "pass": "Passes", "no clear difference": "No clear difference", "clearly opposite": "Clearly the other way" };
+  const descs = {
+    t1: ["More \"me\"", "I, me, my per 1,000 words"],
+    t2: ["Balance tipped toward me", "share of me words among me and God words"],
+    t3: ["The singer is the actor", "share of lines where I act, among lines where I or God acts"],
+  };
+  const fmtVal = (key, v) => key === "t1" ? r0(v) : Math.round(v * 100) + "%";
+  function chipIcon(res) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("width", "12"); s.setAttribute("height", "12"); s.setAttribute("viewBox", "0 0 12 12"); s.setAttribute("aria-hidden", "true");
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "1.8"); p.setAttribute("stroke-linecap", "round");
+    p.setAttribute("d", res === "pass" ? "M2 6.5l2.5 2.5L10 3" : res === "clearly opposite" ? "M6 2v8M3 7l3 3 3-3" : "M2.5 6h7");
+    s.appendChild(p); return s;
+  }
+  function chip(res) { const c = el("span", "chip"); c.appendChild(chipIcon(res)); c.appendChild(document.createTextNode(resultText[res])); return c; }
+  (function verdict() {
+    const passed = D.tests.filter(t => t.result === "pass").length;
+    document.getElementById("verdictWord").textContent = D.verdict;
+    const nOld = D.eras["1900-1969"].songs + D.eras["1970-1999"].songs;
+    document.getElementById("verdictSub").textContent = passed + " of 3 tests pass. " + nOld + " songs written 1900 to 1999 compared with " + D.eras["2000-2026"].songs + " written since 2000.";
+    const tb = document.getElementById("testsBody");
+    D.tests.forEach(t => {
+      const tr = el("tr");
+      const c1 = el("td"); const nm = el("span", "tname", descs[t.key][0]); c1.appendChild(nm); c1.appendChild(el("span", "tdesc", descs[t.key][1]));
+      const sm = el("span", "tdesc"); sm.style.marginTop = "8px"; sm.appendChild(chip(t.result)); sm.className = "tdesc show-sm";
+      tr.appendChild(c1);
+      tr.appendChild(el("td", "num", fmtVal(t.key, t.old)));
+      const c3 = el("td", "num", fmtVal(t.key, t.new));
+      const chg = t.key === "t1" ? pct(t.rel) : ((t.new - t.old) >= 0 ? "+" : "") + Math.round((t.new - t.old) * 100) + " pts";
+      const g = el("span", "tdesc", chg); c3.appendChild(g); tr.appendChild(c3);
+      const c4 = el("td", "hide-sm"); c4.appendChild(chip(t.result)); tr.appendChild(c4);
+      if (window.matchMedia("(max-width: 760px)").matches) c1.appendChild(sm);
+      tb.appendChild(tr);
+    });
+    const sp = document.getElementById("splits");
+    const a = D.split_values["1900_1969"].t2, b = D.split_values["1970_1999"].t2;
+    const s1 = el("div", "split"); s1.appendChild(el("b", null, "Against gospel songs, 1900 to 1969"));
+    s1.appendChild(document.createTextNode("The older songs leaned more toward self: " + Math.round(a[0] * 100) + "% of their self and God words were about me, against " + Math.round(a[1] * 100) + "% today. The balance test comes out clearly the other way."));
+    const s2 = el("div", "split"); s2.appendChild(el("b", null, "Against praise choruses, 1970 to 1999"));
+    s2.appendChild(document.createTextNode("Here the hunch holds. Today's songs lean more toward self (" + Math.round(b[1] * 100) + "% against " + Math.round(b[0] * 100) + "%), and the balance test passes. Of every era, those choruses tilted furthest toward God."));
+    sp.appendChild(s1); sp.appendChild(s2);
+  })();
+
+  /* ---------- featured climb ---------- */
+  (function bigNumbers() {
+    const host = document.getElementById("bigNumbers");
+    D.recent.decades.forEach((d, i) => {
+      const b = el("div", "bn");
+      const v = el("div", "v", String(r0(d.i[0])));
+      b.appendChild(v);
+      b.appendChild(el("div", "l", "I, me, my per 1,000 words in songs written in the " + d.label));
+      host.appendChild(b);
+    });
+  })();
+  let climbView = "decade";
+  function renderClimb() {
+    const host = document.getElementById("climbChart"); host.replaceChildren();
+    const rows = climbView === "decade" ? D.recent.decades : D.recent.windows;
+    const W = host.clientWidth || 900, H = Math.max(280, Math.min(380, W * 0.42));
+    const m = { t: 30, r: W < 560 ? 20 : 150, b: 44, l: 44 };
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    const x = d3.scalePoint().domain(rows.map(r => r.label)).range([m.l + 30, W - m.r - 30]);
+    const y = d3.scaleLinear().domain([0, 120]).range([H - m.b, m.t]);
+    const g1900 = D.decades.find(d => d.decade === 1900).i;
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(4)).join("line")
+      .attr("x1", m.l).attr("x2", W - m.r).attr("y1", d => y(d)).attr("y2", d => y(d));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`)
+      .call(d3.axisLeft(y).ticks(4).tickSize(0).tickPadding(8)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`)
+      .call(d3.axisBottom(x).tickSize(0).tickPadding(12)).call(g => g.select(".domain").attr("stroke", css("--axis")));
+    // 1900s reference line
+    svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(g1900)).attr("y2", y(g1900))
+      .attr("stroke", css("--ink-2")).attr("stroke-width", 1).attr("stroke-dasharray", "2 4");
+    svg.append("text").attr("class", "anno").attr("x", m.l + 6).attr("y", y(g1900) - 8).text("1900s gospel songs: " + r0(g1900));
+    const col = css("--me"), surf = css("--paper-2");
+    const line = d3.line().x(d => x(d.label)).y(d => y(d.i[0])).curve(d3.curveMonotoneX);
+    svg.append("path").datum(rows).attr("fill", "none").attr("stroke", col).attr("stroke-width", 2).attr("stroke-linecap", "round").attr("d", line).attr("opacity", .55);
+    const gp = svg.append("g").selectAll("g").data(rows).join("g");
+    gp.append("line").attr("x1", d => x(d.label)).attr("x2", d => x(d.label)).attr("y1", d => y(d.i[1])).attr("y2", d => y(d.i[2]))
+      .attr("stroke", col).attr("stroke-width", 2).attr("stroke-linecap", "round").attr("opacity", .35);
+    gp.append("circle").attr("cx", d => x(d.label)).attr("cy", d => y(d.i[0])).attr("r", 7).attr("fill", col).attr("stroke", surf).attr("stroke-width", 2);
+    gp.append("text").attr("class", "lbl-strong").attr("x", d => x(d.label) + 13).attr("y", d => y(d.i[0])).attr("dominant-baseline", "middle").text(d => r0(d.i[0]));
+    gp.append("rect").attr("x", d => x(d.label) - 24).attr("y", m.t).attr("width", 48).attr("height", H - m.t - m.b).attr("fill", "transparent")
+      .attr("tabindex", 0).attr("aria-label", d => `${d.label}: ${r0(d.i[0])} per 1,000 words`)
+      .on("pointermove focus", (e, d) => showTip(e.type === "focus" ? { clientX: e.target.getBoundingClientRect().x + 24, clientY: e.target.getBoundingClientRect().y + 60 } : e, [
+        { value: r0(d.i[0]) + " per 1,000 words", key: col },
+        { value: "Range " + r0(d.i[1]) + " to " + r0(d.i[2]), label: "" },
+        { value: d.n + " songs", label: "written " + d.label }], host))
+      .on("pointerleave blur", hideTip);
+    const last = rows[rows.length - 1];
+    if (W >= 560) svg.append("text").attr("class", "anno").attr("x", x(last.label) + 14).attr("y", y(last.i[2]) - 6).text("Includes the newest songs, 2023 to 2025");
+    const cap = document.getElementById("climbCaption");
+    const df = D.recent.diff_2020s_2000s.m1_self_per_1000;
+    cap.textContent = "Dots are averages; bars are 95% ranges. From the 2000s to the 2020s the rate rose " + r0(df[0]) +
+      " per 1,000 words (range " + r0(df[1]) + " to " + r0(df[2]) + "), and the rise shows up in songs written 2020 to 2022 alone. " +
+      "Songs written 2023 to 2025 reached the charts after CCLI (the licensing service churches use to report the songs they sing) changed its ranking method in late 2024, and they push the 2020s higher. The 2020s now tie the 1900s for the most \"I\" of any decade. This closer look came after the verdict and is not part of it.";
+  }
+  document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => {
+    climbView = b.dataset.view;
+    document.querySelectorAll("[data-view]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderClimb();
+  }));
+
+  /* ---------- bubble clouds ---------- */
+  let countMode = "unique";
+  const sims = [];
+  function renderClouds() {
+    sims.forEach(s => s.stop()); sims.length = 0;
+    const key = countMode === "unique" ? "rate" : "rate_sung";
+    const all = [...D.bubbles.old.words, ...D.bubbles.new.words].map(w => w[key] || 0);
+    const maxV = d3.max(all);
+    [["old", "cloudOld", "oldSub"], ["new", "cloudNew", "newSub"]].forEach(([era, id, subId]) => {
+      const host = document.getElementById(id); host.replaceChildren();
+      const B = D.bubbles[era];
+      document.getElementById(subId).textContent = B.songs + " songs";
+      const W = host.clientWidth || 480, H = Math.max(340, Math.min(470, W * 0.95));
+      const rScale = d3.scaleSqrt().domain([0, maxV]).range([0, Math.min(W, H) * 0.165]);
+      const words = B.words.filter(w => w[key]).sort((a, b) => b[key] - a[key]).slice(0, 34)
+        .map(w => ({ ...w, v: w[key], r: Math.max(9, rScale(w[key])) }));
+      const color = c => css(c === "me" ? "--me" : c === "us" ? "--us" : c === "god" ? "--god" : "--other");
+      const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+      const nodes = words.map((w, i) => ({ ...w, x: W / 2 + Math.cos(i) * 40, y: H / 2 + Math.sin(i) * 40 }));
+      const g = svg.append("g").selectAll("g").data(nodes).join("g").attr("class", "bubble")
+        .attr("tabindex", 0).attr("role", "img").attr("aria-label", d => `${disp(d.word)}: ${d.v.toFixed(1)} per 1,000 words`);
+      g.append("circle").attr("r", d => d.r).attr("fill", d => color(d.cat)).attr("stroke", css("--paper-2")).attr("stroke-width", 2);
+      g.append("text").attr("font-size", d => Math.max(10, Math.min(30, d.r * 0.62 / Math.max(1, d.word.length / 3.2))))
+        .attr("fill", d => d.cat === "other" ? css("--ink") : "#ffffff")
+        .text(d => d.r * 2 > d.word.length * 6.4 + 4 ? disp(d.word) : "");
+      g.on("pointermove", (e, d) => showTip(e, [{ value: d.v.toFixed(1) + " per 1,000 words", key: color(d.cat), label: "" }, { value: disp(d.word) }], host))
+        .on("pointerleave", hideTip)
+        .on("focus", (e, d) => { const r = e.target.getBoundingClientRect(); showTip({ clientX: r.x + r.width / 2, clientY: r.y }, [{ value: d.v.toFixed(1) + " per 1,000 words" }, { value: disp(d.word) }], host); })
+        .on("blur", hideTip);
+      const sim = d3.forceSimulation(nodes)
+        .force("x", d3.forceX(W / 2).strength(0.05)).force("y", d3.forceY(H / 2).strength(0.07))
+        .force("collide", d3.forceCollide(d => d.r + 2).iterations(3))
+        .alphaDecay(0.02);
+      const tick = () => g.attr("transform", d => `translate(${Math.max(d.r, Math.min(W - d.r, d.x))},${Math.max(d.r, Math.min(H - d.r, d.y))})`);
+      if (reduce) { sim.stop(); for (let i = 0; i < 300; i++) sim.tick(); tick(); }
+      else {
+        sim.on("tick", tick);
+        // gentle, endless float
+        let t = 0;
+        const drift = () => {
+          t += 1;
+          nodes.forEach((n, i) => { n.vx += Math.sin(t / 90 + i) * 0.012; n.vy += Math.cos(t / 110 + i * 1.7) * 0.012; });
+          if (sim.alpha() < 0.03) sim.alpha(0.03);
+        };
+        sim.on("tick.drift", () => { drift(); tick(); });
+      }
+      sims.push(sim);
+    });
+  }
+  document.querySelectorAll("[data-count]").forEach(b => b.addEventListener("click", () => {
+    countMode = b.dataset.count;
+    document.querySelectorAll("[data-count]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderClouds();
+  }));
+  document.addEventListener("visibilitychange", () => sims.forEach(s => document.hidden ? s.stop() : (!reduce && s.restart())));
+
+  /* ---------- century lines ---------- */
+  function lineChart(hostId, series, opts) {
+    const host = document.getElementById(hostId); host.replaceChildren();
+    const W = host.clientWidth || 900, H = Math.max(280, Math.min(400, W * 0.42));
+    const m = { t: 20, r: W < 560 ? 14 : 110, b: 40, l: 44 };
+    const rows = D.decades;
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear().domain([1900, 2020]).range([m.l, W - m.r]);
+    const y = d3.scaleLinear().domain([0, opts.yMax]).nice().range([H - m.b, m.t]);
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(4)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", d => y(d)).attr("y2", d => y(d));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(0).tickPadding(8)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`)
+      .call(d3.axisBottom(x).tickValues(W < 560 ? [1900, 1940, 1980, 2020] : rows.map(r => r.decade)).tickFormat(d => d + "s").tickSize(0).tickPadding(12))
+      .call(g => g.select(".domain").attr("stroke", css("--axis")));
+    if (opts.shade) {
+      const [a, b] = opts.shade;
+      svg.append("rect").attr("x", x(a) - 6).attr("width", x(b) - x(a) + 12).attr("y", m.t).attr("height", H - m.t - m.b).attr("fill", css("--paper-2"));
+      svg.append("text").attr("class", "anno").attr("x", (x(a) + x(b)) / 2).attr("y", m.t + 12).attr("text-anchor", "middle").text(opts.shadeLabel);
+      svg.select(".grid").raise(); svg.selectAll(".axis").raise();
+    }
+    series.forEach(s => {
+      const c = css(s.color);
+      if (s.band) svg.append("path").datum(rows).attr("fill", c).attr("opacity", .12)
+        .attr("d", d3.area().x(d => x(d.decade)).y0(d => y(d[s.band[0]])).y1(d => y(d[s.band[1]])).curve(d3.curveMonotoneX));
+      svg.append("path").datum(rows).attr("fill", "none").attr("stroke", c).attr("stroke-width", 2).attr("stroke-linejoin", "round").attr("stroke-linecap", "round")
+        .attr("d", d3.line().x(d => x(d.decade)).y(d => y(d[s.key])).curve(d3.curveMonotoneX));
+      const end = rows[rows.length - 1];
+      svg.append("circle").attr("cx", x(end.decade)).attr("cy", y(end[s.key])).attr("r", 4.5).attr("fill", c).attr("stroke", css("--paper")).attr("stroke-width", 2);
+      if (W >= 560) svg.append("text").attr("class", "lbl").attr("x", x(end.decade) + 10).attr("y", y(end[s.key]) + (s.dy || 0)).attr("dominant-baseline", "middle").text(s.label + " " + r0(end[s.key]));
+    });
+    // crosshair
+    const ch = svg.append("line").attr("stroke", css("--ink-2")).attr("stroke-width", 1).attr("y1", m.t).attr("y2", H - m.b).attr("opacity", 0);
+    svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b).attr("fill", "transparent")
+      .on("pointermove", e => {
+        const [px] = d3.pointer(e); const dec = Math.round(x.invert(px) / 10) * 10;
+        const d = rows.find(r => r.decade === Math.max(1900, Math.min(2020, dec)));
+        ch.attr("x1", x(d.decade)).attr("x2", x(d.decade)).attr("opacity", .5);
+        showTip(e, [{ value: d.decade + "s", label: d.songs + " songs" }, ...series.map(s => ({ value: r0(d[s.key]), label: s.label, key: css(s.color) }))], host);
+      })
+      .on("pointerleave", () => { ch.attr("opacity", 0); hideTip(); });
+  }
+  function renderCentury() {
+    lineChart("centuryChart", [
+      { key: "god", label: "God", color: "--god" },
+      { key: "i", label: "I", color: "--me", band: ["i_lo", "i_hi"] },
+      { key: "we", label: "We", color: "--us" },
+    ], { yMax: 180, shade: [1970, 1980], shadeLabel: "Praise chorus era" });
+  }
+  function renderToWhom() {
+    const e = D.eras;
+    document.getElementById("towhomLede").textContent =
+      "\"You\" addressed to God went from " + r0(e["1900-1969"].you_god_per_1000) + " uses per 1,000 words in songs written 1900 to 1969 to " +
+      r0(e["2000-2026"].you_god_per_1000) + " in songs written since 2000, though it slipped to " + r0(D.decades.find(d => d.decade === 2020).you_god) + " in the 2020s. \"He\" about God fell by half. In older songs only " +
+      Math.round(D.you_to_god_share.old * 100) + "% of \"you\" meant God, because gospel songs often spoke to the listener. Today it is " +
+      Math.round(D.you_to_god_share.new * 100) + "%.";
+    lineChart("toWhomChart", [
+      { key: "you_god", label: "You", color: "--god" },
+      { key: "he_god", label: "He", color: "--he" },
+    ], { yMax: 80 });
+  }
+
+  /* ---------- cards ---------- */
+  (function cards() {
+    const e = D.eras, pop = D.pop;
+    const popMin = r0(d3.min(pop, p => p.i)), popMax = r0(d3.max(pop, p => p.i));
+    const wMax = r0(d3.max(D.decades, d => d.i));
+    const items = [
+      { num: r0(e["1900-1969"].m1_self_per_1000) + " vs " + r0(e["2000-2026"].m1_self_per_1000), h: "The old gospel songs said \"I\" just as much",
+        p: "Songs written 1900 to 1969 use I, me and my " + r0(e["1900-1969"].m1_self_per_1000) + " times per 1,000 words. Songs written since 2000: " + r0(e["2000-2026"].m1_self_per_1000) + ". The full 1900 to 1999 average in the verdict is lower, " + r0(D.tests[0].old) + ", because the 1970s and 80s pull it down." },
+      { num: e["2000-2026"].self_per_song_sung + " vs " + e["1900-1969"].self_per_song_sung, h: "You do sing \"I\" more per song",
+        p: "Modern songs are longer and repeat more, so a song sung through says I, me or my " + e["2000-2026"].self_per_song_sung + " times on average, against " + e["1900-1969"].self_per_song_sung + " for an older song. Words for God grew even faster." },
+      { num: Math.round(e["2000-2026"].god_actor_share * 100) + "%", h: "God does more of the acting",
+        p: "In songs written since 2000, God is the one acting in " + Math.round(e["2000-2026"].god_actor_share * 100) + "% of all lines, up from " + Math.round(e["1900-1969"].god_actor_share * 100) + "% in songs written 1900 to 1969. The rest belong to the singer, the church, others, or no action at all." },
+      { num: popMin + " to " + popMax, h: "Pop music runs higher still",
+        p: "For comparison, Billboard's year-end hits from the 1960s to the 2010s use I, me and my " + popMin + " to " + popMax + " times per 1,000 words. Worship songs range from " + r0(d3.min(D.decades, d => d.i)) + " to " + wMax + " by decade." },
+    ];
+    const host = document.getElementById("cards");
+    items.forEach(it => { const c = el("article", "card"); c.appendChild(el("div", "num", it.num)); c.appendChild(el("h3", null, it.h)); c.appendChild(el("p", null, it.p)); host.appendChild(c); });
+  })();
+
+  /* ---------- methods ---------- */
+  (function methods() {
+    const M = document.getElementById("methodsBody");
+    const meta = D.meta, cq = D.coding;
+    const sec = (title, items) => { M.appendChild(el("h4", null, title)); const ul = el("ul"); items.forEach(t => ul.appendChild(el("li", null, t))); M.appendChild(ul); };
+    sec("The question", ["Are worship songs written in 2000 or later more focused on me, and less on God, than worship songs written from 1900 to 1999? Songs are grouped by the year they were written, not the year they were sung."]);
+    sec("Which songs", [
+      "Songs written 1900 to 1999: ranked by how many of 30 major U.S. Protestant hymnals published 1905 to 1997 printed them (Baptist, Methodist, Presbyterian and Reformed, Pentecostal and Holiness, Black church, and nondenominational evangelical). Songs written 1970 to 1999 also count their appearances on CCLI church charts. Lists come from Hymnary.org.",
+      "Songs written 2000 to 2025: ranked by appearances on CCLI's U.S. church charts (Top 25 lists from 2008 to 2014 and Top 100 lists from 2016 to 2025). Charts for 2001 to 2007 and 2014 to 2016 were never archived.",
+      "The top 30 songs per decade with lyrics available make up the study: " + meta.songs_core + " songs in all. Lyrics could not be found for every song, so some decades reach further down their list. The 1940s, 1950s, 1960s and 1990s have 16 to 25 songs.",
+      "Each song's written year was checked by hand. Translations date from their English version. Modern arrangements of old hymns are left out. Spirituals and folk songs with no known written year are left out.",
+    ]);
+    sec("What was counted", [
+      "Every distinct line of every song was coded by AI coders who saw only the title, never the year. They marked who is speaking, which uses of you and he refer to God, names and titles for God, and who does the action in the line.",
+      "A second, independent coder recoded " + cq.recode_songs + " songs (" + cq.recode_lines + " lines) blind. They agreed on who acts in " + Math.round(cq.agreement.actor * 100) + "% of lines (kappa " + cq.kappa_actor + ") and on references to God in over " + Math.floor(cq.agreement.names * 100) + "%.",
+      "Pronoun counts come straight from the text. Coders also flagged lyric files that turned out to be the wrong song, and those were replaced or dropped.",
+    ]);
+    sec("How the verdict was decided", [
+      "Three tests, with rules written and locked in a dated file before any lyrics were collected: more I, me, my per 1,000 words; a higher share of self words against God words; and more lines where I act than lines where God acts.",
+      "A test passes only if songs written since 2000 score at least 10% higher, the 95% interval excludes zero, and it holds both with each line counted once and with repeats counted as sung. Intervals come from a bootstrap that resamples songwriters, so one prolific writer cannot drive the result.",
+      "True needs all three. Partly true needs one or two. Not true means none.",
+      "Robustness checks that also came out Not true: without translated hymns, with the next 30 songs per decade added, and without songs that charted only after CCLI changed its ranking method in September 2024.",
+    ]);
+    sec("Limits", [
+      "This measures words, not hearts. A song can say I and still be entirely about God.",
+      "The older list reflects what hymnals printed; the modern list reflects what churches reported using. Both are proxies for what congregations sang.",
+      "CCLI moved to download-based rankings in late 2024. The newest songs come only from the new method.",
+      "Pop comparison: Billboard year-end Hot 100 lyrics, 1960 to 2016, " + D.pop.reduce((a, p) => a + p.songs, 0).toLocaleString() + " songs, counted the same way.",
+    ]);
+    M.appendChild(el("h4", null, "The numbers by decade"));
+    const wrap = el("div", "tablewrap"); const t = el("table", "data");
+    const hr = el("tr"); ["Written", "Songs", "I, me, my", "We, us, our", "Words for God", "You to God", "He about God"].forEach(h => hr.appendChild(el("th", null, h)));
+    const th = el("thead"); th.appendChild(hr); t.appendChild(th);
+    const tb = el("tbody");
+    D.decades.forEach(d => { const r = el("tr"); [d.decade + "s", d.songs, r0(d.i), r0(d.we), r0(d.god), r0(d.you_god), r0(d.he_god)].forEach(v => r.appendChild(el("td", null, String(v)))); tb.appendChild(r); });
+    t.appendChild(tb); wrap.appendChild(t); M.appendChild(wrap);
+    M.appendChild(el("p", "note", "Per 1,000 words, each line counted once."));
+    sec("Sources", [
+      "Hymnary.org hymnal indexes and CCLI Top 100 snapshots; CCLI Top 25 pages via the Internet Archive; lyrics from LRCLIB and Hymnary.org public-domain texts, kept private.",
+      "Prior work this builds on: Nathan Burggraff, \"I Wanna Talk about Me,\" Artistic Theologian 9 (2021); Lester Ruth's studies of CCLI songs; Golubickis and colleagues on pronouns in pop lyrics, PLOS ONE (2026).",
+    ]);
+  })();
+
+  function renderAll() { hideTip(); renderClimb(); renderClouds(); renderCentury(); renderToWhom(); }
+  renderAll();
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(renderAll, 200); });
+})();
+</script>
+</body>
+</html>
